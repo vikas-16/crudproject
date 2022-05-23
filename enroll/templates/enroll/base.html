@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{%  load static  %}
+<html>
+    <title>
+        Crud App
+    </title>
+    <link rel=" stylesheet" href="{% static 'enroll/css/bootstrap.css' %}">
+    <body>
+
+        <div class="container mt-5">
+        <h2 class="alert alert-secondary">Functions Based Views</h2>
+        {% block content %}
+
+        {% endblock content%}
+        </div>
+    <script src="{% static  'enroll/js/jquery.js' %}"></script>
+    <script src="{% static  'enroll/js/popper.js' %}"></script>
+    <script src="{% static  'enroll/js/bootstrap.js' %}"></script>
+    </body>
+</html>
