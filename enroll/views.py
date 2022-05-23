@@ -28,7 +28,22 @@ def add_show(request):
            pass
     return render(request, 'enroll/addandshow.html', {'form':fm,'stu':stud})   
 
-#########THIS DELETE FUNCTION###########
+
+
+###THIS UPDATE EDIT########################
+def update_data(request, id):
+    if request.method == 'POST':
+        pi = User.objects.get(pk=id)
+        fm = Studentregistration(request.POST, instance=pi)
+        if fm.is_valid():
+            fm.save()
+    else:
+     pi = User.objects.get(pk=id)
+     fm = Studentregistration(instance=pi)
+    return render(request, 'enroll/updatestudent.html', {'form':fm})
+
+
+#########THIS DELETE FUNCTION########### 
 def delete_data(request, id):
     if request.method == 'POST':
      pi = User.objects.get(pk=id)
