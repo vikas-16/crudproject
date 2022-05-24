@@ -1,13 +1,18 @@
 {% extends 'enroll/base.html'%}
 
 {% block content %}
+<style>
+    .w-img{
+        width: 53px;
+    }
+</style>
 <div class="row">
     <div class="col-sm-4">
     <h3 class="text-center alert alert-info">Add New Student</h3>
-    <form action="" method ="POST">
+    <form action="" method ="POST" enctype="multipart/form-data" autocomplete="off">
     {% csrf_token%}
     {{form.as_p}}
-    <input type="submit" class="btn btn-success" value="add">
+    <input type="submit" class="btn btn-success" value="Add Student">
     </form>
     </div> 
 
@@ -22,6 +27,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">password</th>
+                        <th scope="col">Upload Image</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -33,13 +39,18 @@
                             <td>{{st.name}}</td>
                             <td>{{st.email}}</td>
                             <td>{{st.password}}</td>
+                            {% if st.upload %}
+                            <td><img class="w3-round-small"   loading="lazy" style="width:30%" src="{{st.upload.url}}"></td>
+                            {% else %}
+                            <td>img not found!</td>
+                            {% endif %}
+                           
+                           <td>
+                                <a href="{% url 'updatedata' st.id %}" class="btn btn-warning btn-sm" value="Edit">Edit</a>
 
-                            <td>
-                                <a href="{% url 'updatedata' st.id %}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{% url 'deletedata' st.id %}" method="post" class= "d-inline"  > {% csrf_token %}
                                 <input type="submit" class="btn btn-danger"  value="Delete">
                                 </from>
-                                
                             </td>
                         </tr>
                         

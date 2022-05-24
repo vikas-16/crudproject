@@ -1,27 +1,24 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponseRedirect
 from .form import Studentregistration
-# from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.hashers import make_password
 from .form import *
-# Create your views here.
 
-########## This Function show add item###############
 
 def add_show(request):
     fm = Studentregistration()
     stud = User.objects.all()
+    print(stud,'======================stud')
     if request.method == 'POST':
-        fm = Studentregistration(request.POST)
+        fm = Studentregistration(request.POST,request.FILES)
         if fm.is_valid():
        
             tm =fm.cleaned_data['password']
             print(tm,'===========tm')
-        #  rgm = User(name=cm, email=gm, password=tm)
-        #  rgm.save()
+       
             test = fm.password = make_password(tm)
-            print(test,'=================fm.passwoerergergergrd = make_password(tm)')
-        # fm.make_password(fm.tm)
+            #print(test,'=================fm.passwoerergergergrd = make_password(tm)')
+       
             fm.save()
             fm = Studentregistration()
         else:
@@ -30,20 +27,18 @@ def add_show(request):
 
 
 
-###THIS UPDATE EDIT########################
+
 def update_data(request, id):
+    pi = User.objects.get(pk=id)
     if request.method == 'POST':
-        pi = User.objects.get(pk=id)
-        fm = Studentregistration(request.POST, instance=pi)
+        fm = Studentregistration(request.POST,request.FILES, instance=pi)
         if fm.is_valid():
             fm.save()
-    else:
-     pi = User.objects.get(pk=id)
-     fm = Studentregistration(instance=pi)
+    fm = Studentregistration(instance=pi)
     return render(request, 'enroll/updatestudent.html', {'form':fm})
 
 
-#########THIS DELETE FUNCTION########### 
+
 def delete_data(request, id):
     if request.method == 'POST':
      pi = User.objects.get(pk=id)
