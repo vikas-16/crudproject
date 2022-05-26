@@ -9,60 +9,15 @@
 <div class="row">
     <div class="col-sm-4">
     <h3 class="text-center alert alert-info">Add New Student</h3>
-    <form action="" method ="POST" enctype="multipart/form-data" autocomplete="off">
+    {% include 'enroll/messages.html' %}
+    <form method ="POST" enctype="multipart/form-data" autocomplete="off">
     {% csrf_token%}
     {{form.as_p}}
     <input type="submit" class="btn btn-success" value="Add Student">
     </form>
     </div> 
 
-    <div class="col-sm-7 offset-1">
-    <h4 class="text-center alert alert-info">Show Students Informations </h4>
-        {% if stu %}
-            
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">vikas</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">password</th>
-                        <th scope="col">UploadImage</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for st in stu%}
-
-                        <tr>
-                            <th scope="row">{{st.id}}</th>
-                            <td>{{st.name}}</td>
-                            <td>{{st.email}}</td>
-                            <td>{{st.password}}</td>
-                            {% if st.upload %}
-                            <td><img class="w3-round-small"   loading="lazy" style="width:30%" src="{{st.upload.url}}"></td>
-                            {% else %}
-                            <td>img not found!</td>
-                            {% endif %}
-                           
-                           <td>
-                                <a href="{% url 'updatedata' st.id %}" class="btn btn-warning btn-sm" value="Edit">Edit</a>
-
-                                <form action="{% url 'deletedata' st.id %}" method="post" class= "d-inline"  > {% csrf_token %}
-                                <input type="submit" class="btn btn-danger"  value="Delete">
-                                </from>
-                            </td>
-                        </tr>
-                        
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-            {% else %}
-            <h1 class="text-center alert alert-info">No records</h1>
-        {%  endif %}
     
-    </div>
 </div>
     
 {% endblock content%}
