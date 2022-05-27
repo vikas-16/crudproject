@@ -4,7 +4,7 @@ from .models import *
 
 class Studentregistration(forms.ModelForm):
     class Meta:
-        model = User
+        model = Student
         fields = ['name','email','password','upload']
 
         widgets= {
