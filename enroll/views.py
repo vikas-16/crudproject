@@ -7,10 +7,19 @@ from cryptography.fernet import Fernet
 from django.http import HttpResponse
 from .encrypt_util import encrypt,decrypt
 from django.contrib import messages
+from django.db.models import Q
 
 def view_data(request):
-    stud = Student.objects.all()
+  
+    name = request.GET.get('name', None)
+   
+    if name:
+      stud = Student.objects.filter(Q(name__icontains=name) | Q(email__icontains=name) | Q(password__icontains=name)) 
+
+    else:
+        stud = Student.objects.all()
     return render(request, 'enroll/view.html', {'stu':stud})
+
 
 
 def add_show(request):

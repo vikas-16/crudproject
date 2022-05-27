@@ -1,0 +1,28 @@
+{% extends 'enroll/base.html'%}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Django Search</title>
+</head>
+<body>
+
+
+
+<form action="" method="POST">
+    {% csrf_token %} 
+    <input type="text" name="name">
+    <input type="submit" name="submit" value="Search">
+</form>
+
+
+
+{% for result in results %}
+
+    <p>{{result.name}}</p>
+
+{% endfor %}
+
+</body>
+</html>
+{% endblock content%}{% endblock content%}
