@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-{%  load static  %}
-<html>
-    <title>
-        Crud App
-    </title>
-    <link rel=" stylesheet" href="{% static 'enroll/css/bootstrap.css' %}">
-    <style>
+{% extends 'enroll/base.html'%}
+{% block content %}
+
+<style>
+    
          body {
         color: #999;
 		background: #f5f5f5;
@@ -89,25 +86,31 @@
         color: #4aba70;
     }
     </style>
-    <body>
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Django</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ </head>
+<body>
+<!--  Request me for a signup form or any type of help  -->
+     <div class="login-form">    
+    
+       Success Your account is verified           dfgn
+        <a href="{% url 'Login' %}" class="btn btn-primary btn-block btn-lg">Login Now</a>
+        
+      </div>
+   
+</div>
+</body>
+</html>       
 
-        <div class="container mt-5">
-        <h2 class="alert alert-secondary">Functions Based Views</h2>
-        {% block content %}
-
-        {% endblock content%}
-        </div>
-    <script src="{% static  'enroll/js/jquery.js' %}"></script>
-    <script src="{% static  'enroll/js/popper.js' %}"></script>
-    <script src="{% static  'enroll/js/bootstrap.js' %}"></script>
-    <script>
-        $(document).ready(function() {
-       
-            setTimeout(function() {
-                $('.message1').fadeOut('slow');
-            }, 1000); 
-        });
-    </script>
-</script
-    </body>
-</html>
+{% endblock content %}

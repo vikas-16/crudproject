@@ -8,9 +8,12 @@
     <form action="{% url 'view_data' %}" method="GET">
     
         <input type="text" name="name">
-        <button type="submit">S</button>
+        <button type="submit">Search</button>
     </form>
     <h4 class="text-center alert alert-info">Show Students Informations </h4>
+  
+
+
         {% if stu %}
             
                 <table class="table table-hover">
@@ -28,7 +31,8 @@
                     {% for st in stu%}
 
                         <tr>
-                            <th scope="row">{{forloop.counter}}</th>
+                            <!--<th scope="row">{{ forloop.counter}}</th>-->
+                            <td>{{st.id}}</td>
                             <td>{{st.name}}</td>
                             <td>{{st.email}}</td>
                             <td>{{st.password}}</td>

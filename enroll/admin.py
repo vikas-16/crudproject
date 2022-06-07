@@ -3,9 +3,9 @@ from .models import *
 
 # Register your models here.
 
-@admin.register(Student)
-class UserAdmin(admin.ModelAdmin):
-    list_display =('id','name','email','password')
+# @admin.register(Student)
+# class UserAdmin(admin.ModelAdmin):
+#     list_display =('id','name','email','password')
 
 
 
