@@ -18,6 +18,7 @@ from django.urls import path
 from enroll import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import include, path
 
 
 admin.site.site_header = "Login to Crud Project"
@@ -27,11 +28,14 @@ admin.site.index_title = "Crud"
 
 
 urlpatterns = [
+  
+    path('', include('enroll.urls')),
     path('admin/', admin.site.urls),
-    path('', views.add_show, name="addandshow"),
-    path('view/', views.view_data, name="view_data"),
-    path('delete/<int:id>/', views.delete_data, name="deletedata"),
-    path('update/<int:id>/', views.update_data, name="updatedata"),
+    
+    # path('', views.add_show, name="addandshow"),
+    # path('view/', views.view_data, name="view_data"),
+    # path('delete/<int:id>/', views.delete_data, name="deletedata"),
+    # path('update/<int:id>/', views.update_data, name="updatedata"),
 
     
 ]

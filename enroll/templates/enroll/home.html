@@ -1,4 +1,5 @@
 {% extends 'enroll/base.html' %}
+
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -15,47 +16,30 @@
  </head>
 <body>
 <!--  Request me for a signup form or any type of help  -->
-<!-- <div class="login-form">    
-    <form action="{% url 'login' %}" method="post">
+<div class="login-form">    
+    <form action="#" method="post">
         {% csrf_token %}
 		<div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
-    	<h4 class="modal-title">Login to Your Account</h4>
+    	<h4 class="modal-title">Login to Your Django Account</h4>
         <div class="form-group">
-            <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+            <input type="text" class="form-control" placeholder="Username" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" name="password" required="required">
+            <input type="password" class="form-control" placeholder="Password" required="required">
         </div>
         <div class="form-group small clearfix">
             <label class="checkbox-inline"><input type="checkbox"> Remember me</label>
             <a href="#" class="forgot-link">Forgot Password?</a>
         </div> 
-        <button type="submit">login</button>            
+        <button type="submit">login</button>                         
     </form>			
-    <div class="text-center small">Don't have an account? <a href="{% url 'register' %}">Sign up</a></div>
+    <div class="text-center small">Don't have an account? <a href="{% url 'register'%}">Sign up</a></div>
 </div>
 </body>
 </html>       
-   -->
-
-   {% load crispy_forms_tags %}
-
-<!--Login--> 
-<div class="container py-5">
-    {% for message in messages %}
-<div class="message1">
-  <div class="alert {{ messages.tags }} alert-success" role="alert" >
-   {{ message }}
- </div>
-</div>
-{% endfor %}
-
-  <h1>Login</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ login_form|crispy }}
-    <button class="btn btn-primary" type="submit">Login</button>
-  </form>
-
-</div>
-{% endblock content %}
+  
+  
+  
+  
+  
+{% endblock content%}
