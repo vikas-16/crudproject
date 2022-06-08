@@ -43,10 +43,15 @@
          </div> -->
 
 
-         <div class="login-form">
+         <div class="login-form"> {% for message in messages %}
+            <div class="message2">
+              <div class="alert {{ messages.tags }} alert-success" role="alert" >
+               {{ message }}
+             </div>
+             {% endfor %}
              <p style="color:red">{{form.errors}}</p>
             <form action="{% url 'register' %}" method="post">
-                {% csrf_token %}
+                {% csrf_token%}
                 <div class="avatar"><i class="material-icons">&#xE7FF;</i></div>
                 <h4 class="modal-title">Singup to Your Django Account</h4>
                 <div class="form-group">
@@ -66,10 +71,18 @@
                     <label class="checkbox-inline"><input type="checkbox"> Remember me</label>
                     <a href="#" class="forgot-link">Forgot Password?</a>
                 </div> 
-               <button type="submit">Signup</button>           
+               <button type="submit" class="btn btn-success">Signup</button>           
             </form>			
-            <div class="text-center small">Don't have an afhfhfghccount? <a href="{% url 'login'%}">Login Now</a></div>
+            <div class="text-center small">Don't have an account<a href="{% url 'login'%}">Login Now</a></div>
         </div>
+        <script>
+            $(document).ready(function() {
+           
+                setTimeout(function() {
+                    $('.message2').fadeOut('slow');
+                }, 5000); 
+            });
+        </script>
          </body>
 
 

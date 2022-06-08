@@ -27,7 +27,7 @@ from django.contrib.auth import login
 
 
 
-def home1(request):
+def home(request):
     return render(request,'enroll/home.html')
 
 # def Login(request):
@@ -59,9 +59,10 @@ def home1(request):
 
 
 def login_request(request):
-    User = get_user_model()
+    User = LoginForm()
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
+        print(form.is_valid(),"==========================================")
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
@@ -70,13 +71,13 @@ def login_request(request):
             if user is not None:
                
                 login(request, user)
-                messages.error(request,"Invalid username or password.")
-                return HttpResponse(f'Hello {user.username}! You have been logged in')
-     
+                messages.error(request,"Successfully Login")
+                #return HttpResponse(f'Hello {user.username}! You have been logged in')
+                return redirect('addandshow')
             else:
-                 messages.error(request,"Invalid username or password.")
+                 messages.error(request,"Invalid usernggggame or password.")
         else:
-             messages.error(request,"Invalid username or password.")
+             messages.error(request,"Invalid vikas or password.")
     form = AuthenticationForm()
     return render(request=request, template_name="enroll/login.html", context={"login_form":form})
 
@@ -181,8 +182,9 @@ def signup(request):
             email = EmailMessage(  
                         mail_subject, message, to=[to_email]  
             )  
-            email.send()  
-            return HttpResponse('Please confirm your email address to complete the registration')  
+            email.send()
+            messages.error(request,"Please confirm your email address to complete the registration")
+            #return HttpResponse('Please confirm your email address to complete the registration')  
     else:  
         form = SignupForm()  
     return render(request, 'enroll/registration.html', {'form': form})  
@@ -194,7 +196,7 @@ def activate(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
-        print(user,"====================user")
+        #print(user,"====================user")
     except(TypeError, ValueError, OverflowError, User.DoesNotExist):
        
         user = None
@@ -202,8 +204,8 @@ def activate(request, uidb64, token):
         user.is_active = True
         # print(user.is_active,"=============================")
         user.save()
-        messages.success(request, 'Thank you for your email confirmation. Now you can login your account.')
-        return HttpResponseRedirect('/user/login/')
+        messages.success(request, f'Now you can login {user}')
+        return redirect('addandshow')
         # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
         messages.success(request, 'Inavlid account.')
@@ -234,7 +236,7 @@ def add_show(request):
     fm = Studentregistration()
    
     stud =  Student.objects.all()
-    print(stud,"++++++++++++++++++test")
+   # print(stud,"++++++++++++++++++test")
    
     if request.method == 'POST':
         fm = Studentregistration(request.POST,request.FILES)
