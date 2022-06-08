@@ -1,11 +1,9 @@
 from django.contrib import admin
-from .models import *
+# from .models import *
+from enroll.models import Student
 
-# Register your models here.
 
-# @admin.register(Student)
-# class UserAdmin(admin.ModelAdmin):
-#     list_display =('id','name','email','password')
+admin.site.register(Student)
 
 
 

@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User  
+from django.core.exceptions import ValidationError
+from django.contrib import messages
 from .models import *
  
 
@@ -29,7 +31,12 @@ class SignupForm(UserCreationForm):
             'password2': forms.PasswordInput(render_value=True, attrs={'class':'form-control', 'autocomplete':'off'}),
 
             }
-
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("An user with this email already exists!")
+            #messages.error(request,"Please confirm your email address to complete the registration")
+        return email      
 
 
 class LoginForm(forms.ModelForm):
@@ -44,3 +51,5 @@ class LoginForm(forms.ModelForm):
             # 'password2': forms.PasswordInput(render_value=True, attrs={'class':'form-control', 'autocomplete':'off'}),
 
     }    
+
+    
