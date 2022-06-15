@@ -235,16 +235,28 @@ def view_data(request):
 def add_show(request):
     fm = Studentregistration()
    
-    stud =  Student.objects.all()
-   # print(stud,"++++++++++++++++++test")
-   
+    #stud =  Student.objects.values_list("name", flat=True)
+    #print(stud,'================================')
+
+    # STUD = Student.objetcs.get(id=5)
+    ### GETTING STARTING N RECORDS IN ATABLE ######
+    stud =  Student.objects.all().order_by('-id')[:5]
+
+    
+
+
+    ###How to Get Field Value in Django Queryset################
+    for text in stud:
+        print(text.name,' ----------------------')
+
+
     if request.method == 'POST':
         fm = Studentregistration(request.POST,request.FILES)
        
         if fm.is_valid():
             password = fm.cleaned_data['password']
             encryptpass= encrypt(['password'])
-           
+            fm.save(commit=False)
             fm.save()
            
             fm = Studentregistration()

@@ -1,3 +1,4 @@
+from logging import PlaceHolder
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User  
@@ -9,9 +10,10 @@ from .models import *
 class Studentregistration(forms.ModelForm):
     class Meta:
         model = Student
-        fields = ['name','email','password','upload']
+        fields = ['category','name','email','password','upload']
         
         widgets= {
+            'category': forms.Select(attrs={'class':'form-control', 'autocomplete':'off'}),
             'name': forms.TextInput(attrs={'class':'form-control', 'autocomplete':'off'}),
             'email': forms.TextInput(attrs={'class':'form-control', 'autocomplete':'off'}),
             'password': forms.PasswordInput(render_value=True, attrs={'class':'form-control', 'autocomplete':'off'}),
